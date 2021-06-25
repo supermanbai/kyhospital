@@ -1,0 +1,19 @@
+
+.box-color {
+	width: 100px;
+	height: 100px;
+	background-color: #007AFF;
+}
+.box-active {
+	background-color: #2C405A;
+}
+.box2 {
+	width: 200px;
+	height: 200px;
+	background-color: #4CD964;
+}
+.box2-hover {
+	background-color: pink;
+}
+
+

@@ -1,0 +1,36 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*每个页面公共css */
+.uni-input-input {
+	font-size: 15px;
+}
+/*css reset*/
+input,textarea,._select,button{ 
+    font-family:arial;
+    font-family:inherit;
+}
+page,._h1,._h2,._h3,._h4,._h5,._h6,._p,._ul,._ol,form{
+    margin:0;
+}
+._h1,._h2,._h3,._h4,._h5,._h6,input,._select,textarea {
+    font-size: 100%
+}
+._ul,._ol{
+    padding-left:0; 
+    list-style-type:none;
+}
+
+

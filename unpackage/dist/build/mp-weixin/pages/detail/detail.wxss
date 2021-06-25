@@ -1,0 +1,1 @@
+.box-color{width:100px;height:100px;background-color:#007aff}.box-active{background-color:#2c405a}.box2{width:200px;height:200px;background-color:#4cd964}.box2-hover{background-color:pink}

@@ -1,0 +1,115 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "体检中心"
+			}
+		},
+		{
+			"path":"pages/testlogin/new_file",
+			"style": {
+				"navigationBarTitleText":"login验证码"
+			}
+		},
+		{
+			"path":"pages/yanzheng/yanzheng",
+			"style": {
+				"navigationBarTitleText":"验证码"
+			}
+		},
+		{
+			"path": "pages/message/message",
+			"style": {
+				"navigationBarTitleText": "体检详情",
+				"backgroundColor": "#fff",
+				"h5":{
+					"pullToRefresh":{
+						"color":"red"
+					}
+				}
+			}
+		},
+		{
+			"path":"pages/detail/detail",
+			"style":{
+				"navigationBarTitleText":"详情页"
+			}
+			
+		},
+		
+		{
+			"path": "pages/contact/contact",
+			"style": {
+				"navigationBarTitleText": "查看体检报告"
+			}
+		}
+		
+	    
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "",
+		"navigationBarBackgroundColor": "#000",
+		"backgroundColor": "#000",
+		"enablePullDownRefresh":true,
+		"backgroundTextStyle":"light"
+	},
+	"tabBar": {
+		"color":"#ccc",
+		"selectedColor":"#2C405A",
+		"list":[
+			{
+				"text":"首页",
+				"pagePath":"pages/index/index",
+				"iconPath":"static/tabs/home.png",
+				"selectedIconPath":"static/tabs/home-active.png"
+				
+			},
+			{
+				"text":"数据",
+				"pagePath":"pages/message/message",
+				"iconPath":"static/tabs/message.png",
+				"selectedIconPath":"static/tabs/message-active.png"
+				
+			},
+			{
+				"text":"联系我们",
+				"pagePath":"pages/contact/contact",
+				"iconPath":"static/tabs/contact.png",
+				"selectedIconPath":"static/tabs/contact-active.png"
+				
+			}
+		]
+	},
+	"condition":{
+		"current":0,
+		"list":[
+			{
+			"name":"详情页",
+			"path":"pages/detail/detail",
+			"query":"id=80"
+			
+		},
+		{
+			"name":"体检详情",
+			"path":"pages/message/message",
+			"query":"id=80"
+			
+		},
+		{
+			"name":"验证",
+			"path":"pages/yanzheng/yanzheng",
+			"query":"id=81"
+			
+		},
+		{
+			"name":"test验证码",
+			"path":"pages/testlogin/new_file",
+			"query":"id=81"
+			
+		}
+	]
+	}
+}
