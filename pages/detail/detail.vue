@@ -1,40 +1,45 @@
 <template>
-	<view class="box2" hover-class="box2-hover">
-		
-		<view class="box-color" hover-class="box-active"  hover-stop-propagation hover-start-time="2000">
-			<text>this is xiangqingye</text>
-		</view>
-		<view>
-			<text selectable>this is xiangqingye</text>
-			
-		</view>
-		<button size="mini" hover-stop-propagation>按钮</button>
-		<button size="default" >按钮</button>
-		<button size="default" type="primary">按钮</button>
-		<button size="default" type="primary" form-type="submit" open-type="openGroupProfile">按钮</button>
-		 <button size="mini" type="primary" loading="true">页面主操作 Loading</button>
-	</view>
-</template>
-
-<script>
-</script>
-
-<style>
-	.box-color {
-		width: 100px;
-		height: 100px;
-		background-color: #007AFF;
-	}
-	.box-active {
-		background-color: #2C405A;
-	}
-	.box2 {
-		width: 200px;
-		height: 200px;
-		background-color: #4CD964;
-	}
-	.box2-hover {
-		background-color: pink;
-	}
+	<view class="content"><web-view :src="url"></web-view>
 	
+	</view>
+	
+</template>
+ 
+<script>
+export default {
+	data() {
+		return {
+			// pdf.js的viewer.htm所在路径
+			// 注意：静态的html文件需要放在根路径下的 hybrid/html 文件夹中
+			viewerUrl: '/hybrid/html/web/viewer.html',
+			// 要访问的pdf的路径
+			fileUrl: 'http://47.101.183.8:8088/test.pdf',
+			// 最终显示在web-view中的路径
+			url: ''
+		};
+	},
+	onLoad() {
+		// h5，使用h5访问的时候记得跨域
+		// #ifdef H5
+		this.url = `${this.viewerUrl}?file=${encodeURIComponent(this.fileUrl)}`;
+		// #endif
+		
+		// 在安卓和ios手机上
+		// 判断是手机系统：安卓，使用pdf.js
+		// #ifdef APP-PLUS
+		if(plus.os.name === 'Android') {
+			this.url = `${this.viewerUrl}?file=${encodeURIComponent(this.fileUrl)}`;
+		}
+		// ios，直接访问pdf所在路径
+		else {
+			this.url = encodeURIComponent(this.fileUrl);
+		}
+		// #endif
+	},
+	methods: {
+	}
+};
+</script>
+ 
+<style>
 </style>

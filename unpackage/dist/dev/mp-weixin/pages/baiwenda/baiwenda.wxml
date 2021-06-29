@@ -1,0 +1,1 @@
+<view><button type="default" data-event-opts="{{[['tap',[['setme',['$event']]]]]}}" bindtap="__e">存储数据</button><button type="default" data-event-opts="{{[['tap',[['getme',['$event']]]]]}}" bindtap="__e">获取数据</button></view>

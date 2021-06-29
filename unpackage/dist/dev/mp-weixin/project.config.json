@@ -4,8 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": false,
-    "checkSiteMap": false
+    "urlCheck": false
   },
   "compileType": "miniprogram",
   "libVersion": "",
@@ -28,14 +27,13 @@
       "current": 0,
       "list": [
         {
-          "name": "详情页",
+          "name": "体检pdf",
           "query": "id=80",
           "id": 0,
           "pathName": "pages/detail/detail"
         },
         {
           "name": "体检详情",
-          "query": "id=80",
           "id": 1,
           "pathName": "pages/message/message"
         },
@@ -46,10 +44,15 @@
           "pathName": "pages/yanzheng/yanzheng"
         },
         {
-          "name": "test验证码",
+          "name": "查看pdf",
           "query": "id=81",
           "id": 3,
           "pathName": "pages/testlogin/new_file"
+        },
+        {
+          "name": "学习内容",
+          "id": 4,
+          "pathName": "pages/baiwenda/baiwenda"
         }
       ]
     }

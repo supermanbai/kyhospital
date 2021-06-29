@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import App from './App'
 
+import globalData from '@/common/js/globalData.js'
+import zwyPopUp from '@/components/zwy-popup/zwy-popup.vue'
+
+
+Vue.prototype.globalData = globalData;
 Vue.config.productionTip = false
 
 App.mpType = 'app'

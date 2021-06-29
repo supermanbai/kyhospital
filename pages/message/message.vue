@@ -8,27 +8,34 @@
 		<view class="form">
 			<text class="form-title">体检人信息</text>
 			<view class="text-t">
-				<text>姓名 :</text>
+				<text>姓名 :{{name}}</text>
 			</view>
 			
 			<view class="text-t">
-				<text>身份证号 :</text>
+				<text>身份证号 :{{idCard}}</text>
 			</view>
 			
 			<view class="text-t">
-				<text>手机号 :</text>
+				<text>手机号 :{{username}}</text>
 			</view>
 			<view class="text-t" style="display: flex;overflow: hidden;">
 				<text style="display: flex; margin-top: 4px;">体检套餐：教室A类体检</text>
+				<!-- <text>体检url：{{url}}</text> -->
 				<button size="mini" type="primary" style="margin: 0px 0 0 10px;float: right;">查看详情</button>
 			</view>
 			<view class="text-t">
-				<text>体检时间 ：</text>
+				<text>体检时间 ：{{etime}}</text>
 			</view>
 			<view class="button-b">
 				<button type="primary" style="margin-right: 5px;" open-type="contact">咨询</button>
-				<button type="primary">查看体检报告</button>
+				<button type="primary" @tap="checkpdf">查看体检报告</button>
 			</view>
+			
+			
+			
+			
+			
+			
 		</view>
 	</view>
 </template>
@@ -38,16 +45,76 @@
 		data() {
 			return {
 				title: 'Hello',
-				flag:false
+				flag:false,
+				isshow:true,
+				username:this.username,
+				name:'',
+				idCard:'',
+				eType:'',
+				etime:'',
+				url:''
 			}
 		},
-		onLoad() {
-	
+		onLoad(options) {
+		
+			// console.log(options)
+			if(this.username!='') {
+				
+				// uni.navigateTo({
+				// 	url:'../index/index'
+				// })
+			}
+			console.log('我的数据',options)
+			
+			let _this = this;
+			uni.request({
+				header: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				url: 'https://h5endpoint.kangkt.com/web/ky/his/getExaminationInfo',
+				method: 'POST',
+				data:{
+					username:options.username
+					
+				},
+				success: (res) => {
+					console.log(res.data.data)
+					_this._data.username=res.data.data.username;
+					_this._data.url= res.data.data.url;
+					_this._data.name= res.data.data.name;
+					_this._data.idCard= res.data.data.idCard;
+					_this._data.etime=res.data.data.etime;
+					console.log('我的手机号',_this.username)
+					// console.log('我的url',_this.url)
+				}
+			})
+			
 		},
 		methods: {
 			box_if(){
 				this.flag = !this.flag;
-				}
+				},
+			checkpdf(res) {
+				console.log('pdf按钮',this.url);
+				
+				// this._data.url=url;
+				var url=this.url;
+				wx.downloadFile({
+				      url:url,
+				      success: function (res) {
+				        const filePath = res.tempFilePath
+				        wx.openDocument({
+				          filePath: filePath,
+				          success: function (res) {
+				            console.log('打开文档成功')
+				          },
+				        })
+				      },
+					 fail:function(res) {
+						 console.log('失败')
+						}
+				    })
+			}
 		}
 	}
 </script>

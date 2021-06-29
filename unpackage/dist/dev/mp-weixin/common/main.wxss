@@ -34,3 +34,19 @@ page,._h1,._h2,._h3,._h4,._h5,._h6,._p,._ul,._ol,form{
 }
 
 
+
+.mask.data-v-9e07ed08 {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	top: 0;
+}
+.tip.data-v-9e07ed08 {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+}
+
