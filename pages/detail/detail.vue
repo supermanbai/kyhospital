@@ -1,45 +1,45 @@
 <template>
-	<view class="content"><web-view :src="url"></web-view>
-	
-	</view>
-	
+	<scroll-view class="content">
+		<image src="../../static/pic1.png" mode="aspectFit" lazy-load=true></image>
+	</scroll-view>
 </template>
  
 <script>
 export default {
-	data() {
-		return {
-			// pdf.js的viewer.htm所在路径
-			// 注意：静态的html文件需要放在根路径下的 hybrid/html 文件夹中
-			viewerUrl: '/hybrid/html/web/viewer.html',
-			// 要访问的pdf的路径
-			fileUrl: 'http://47.101.183.8:8088/test.pdf',
-			// 最终显示在web-view中的路径
-			url: ''
-		};
-	},
-	onLoad() {
-		// h5，使用h5访问的时候记得跨域
-		// #ifdef H5
-		this.url = `${this.viewerUrl}?file=${encodeURIComponent(this.fileUrl)}`;
-		// #endif
-		
-		// 在安卓和ios手机上
-		// 判断是手机系统：安卓，使用pdf.js
-		// #ifdef APP-PLUS
-		if(plus.os.name === 'Android') {
-			this.url = `${this.viewerUrl}?file=${encodeURIComponent(this.fileUrl)}`;
-		}
-		// ios，直接访问pdf所在路径
-		else {
-			this.url = encodeURIComponent(this.fileUrl);
-		}
-		// #endif
-	},
-	methods: {
-	}
-};
+    data() {
+       return {
+            share:{
+               title: '自定义分享标题',
+               imageUrl:'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg',
+            }
+       }
+    },
+    onShareAppMessage(res) { //发送给朋友
+        return {
+            title: this.share.title,
+            imageUrl: this.share.imageUrl,
+        }
+    },
+    onShareTimeline(res) {//分享到朋友圈
+        return {
+            title: this.share.title,
+            imageUrl: this.share.imageUrl,
+        }
+    },
+}
+
+
 </script>
  
 <style>
+	.content {
+		display: flex;
+		justify-content: center;
+	}
+	.content image {
+		width: 100%;
+		height: 1100px;
+		margin: -44px 0 -22px 0;
+		will-change: transform;
+	}
 </style>

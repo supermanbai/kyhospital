@@ -4,7 +4,9 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "体检中心"
+				"navigationBarTitleText": "体检中心",
+				"navigationBarBackgroundColor":"#88c6bb",
+				"backgroundColor": "#237351"
 			}
 		},
 		{
@@ -23,6 +25,7 @@
 			"path": "pages/message/message",
 			"style": {
 				"navigationBarTitleText": "体检详情",
+				"navigationBarBackgroundColor":"#88c6bb",
 				"backgroundColor": "#fff",
 				"h5":{
 					"pullToRefresh":{
@@ -34,7 +37,7 @@
 		{
 			"path":"pages/detail/detail",
 			"style":{
-				"navigationBarTitleText":"体检pdf"
+				"navigationBarTitleText":"体检套餐"
 			}
 			
 		},
@@ -93,7 +96,7 @@
 		"current":0,
 		"list":[
 			{
-			"name":"体检pdf",
+			"name":"体检套餐",
 			"path":"pages/detail/detail",
 			"query":"id=80"
 			
@@ -101,7 +104,7 @@
 		{
 			"name":"体检详情",
 			"path":"pages/message/message"
-			// "query":"username=''"
+			// "query":"username=16619987011"
 			
 		},
 		{

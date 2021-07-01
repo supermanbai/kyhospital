@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "体检详情",
+  "navigationBarBackgroundColor": "#88c6bb",
   "backgroundColor": "#fff",
   "usingComponents": {}
 }

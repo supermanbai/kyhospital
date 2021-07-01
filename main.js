@@ -3,6 +3,9 @@ import App from './App'
 
 import globalData from '@/common/js/globalData.js'
 import zwyPopUp from '@/components/zwy-popup/zwy-popup.vue'
+//分享
+import share from './common/js/share.js'
+Vue.mixin(share)
 
 
 Vue.prototype.globalData = globalData;

@@ -1,1 +1,1 @@
-<view class="content"><web-view src="{{url}}"></web-view></view>
+<scroll-view class="content"><image src="../../static/pic1.png" mode="aspectFit" lazy-load="true"></image></scroll-view>

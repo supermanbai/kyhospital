@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "体检中心",
+  "navigationBarBackgroundColor": "#88c6bb",
+  "backgroundColor": "#237351",
   "usingComponents": {}
 }

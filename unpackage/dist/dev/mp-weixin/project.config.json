@@ -27,7 +27,7 @@
       "current": 0,
       "list": [
         {
-          "name": "体检pdf",
+          "name": "体检套餐",
           "query": "id=80",
           "id": 0,
           "pathName": "pages/detail/detail"

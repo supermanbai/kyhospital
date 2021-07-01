@@ -1,0 +1,48 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "体检pdf",
+          "pathName": "pages/detail/detail",
+          "query": "id=80"
+        },
+        {
+          "name": "体检详情",
+          "pathName": "pages/message/message",
+          "query": "username=16619987011",
+          "scene": null
+        },
+        {
+          "id": 2,
+          "name": "验证",
+          "pathName": "pages/yanzheng/yanzheng",
+          "query": "id=81"
+        },
+        {
+          "id": 3,
+          "name": "查看pdf",
+          "pathName": "pages/testlogin/new_file",
+          "query": "id=81"
+        },
+        {
+          "id": 4,
+          "name": "学习内容",
+          "pathName": "pages/baiwenda/baiwenda",
+          "query": ""
+        }
+      ]
+    }
+  }
+}

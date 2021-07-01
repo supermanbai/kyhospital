@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="container-login">
 		<view class="top-nav" v-show="!flag">
 			<text>点击“...”添加至我的小程序，问诊全国顶级医生</text>
 			<image src="../../static/close.png" @click="box_if"></image>
@@ -8,31 +8,32 @@
 		<view class="form">
 			<text class="form-title">体检人信息</text>
 			<view class="text-t">
-				<text>姓名 :{{name}}</text>
+				<text>姓名 :{{name||''}}</text>
 			</view>
 			
 			<view class="text-t">
-				<text>身份证号 :{{idCard}}</text>
+				<text>身份证号 :{{idCard||''}}</text>
 			</view>
 			
 			<view class="text-t">
 				<text>手机号 :{{username}}</text>
 			</view>
 			<view class="text-t" style="display: flex;overflow: hidden;">
-				<text style="display: flex; margin-top: 4px;">体检套餐：教室A类体检</text>
+				<text style="display: flex; margin-top: 10px;">体检套餐：{{etype||''}}</text>
 				<!-- <text>体检url：{{url}}</text> -->
-				<button size="mini" type="primary" style="margin: 0px 0 0 10px;float: right;">查看详情</button>
+				<button size="mini" type="primary" style="float: right;margin: 0 10px 5px 0;" @tap="checkdetail" class="load-btn">查看详情</button>
 			</view>
 			<view class="text-t">
-				<text>体检时间 ：{{etime}}</text>
+				<text>体检时间 ：{{etime||''}}</text>
 			</view>
 			<view class="button-b">
-				<button type="primary" style="margin-right: 5px;" open-type="contact">咨询</button>
-				<button type="primary" @tap="checkpdf">查看体检报告</button>
+				<!-- <button type="primary" style="margin-right: 5px;" open-type="contact">咨询</button> -->
+				<button type="primary" @tap="checkpdf" class="load-btn">查看体检报告</button>
 			</view>
-			
-			
-			
+			<view class="tj-txt">
+				<text>体检结果有任何疑问都可以咨询哦</text>
+				<text>回复时间：8:00-17:00</text>
+			</view>
 			
 			
 			
@@ -50,21 +51,46 @@
 				username:this.username,
 				name:'',
 				idCard:'',
-				eType:'',
+				etype:'',
 				etime:'',
 				url:''
+				// msgType: 'success',
+				// message: '这是一条成功消息提示'
+
 			}
 		},
 		onLoad(options) {
 		
-			// console.log(options)
-			if(this.username!='') {
-				
+			console.log(options);
+			if(options.username!=''||options.username!=null) {
+				this.username = options.username;
+			}
+			if(this.username ==''||this.username==null) {
+				// setTimeout(function () {
+				//     uni.hideLoading();
+				// }, 2000);
+				uni.showModal({
+				    title: '此手机号无体检信息',
+				    content: '请确认手机号为体检预留的手机号',
+					showCancel:false,
+				    success: function (res) {
+				        if (res.confirm) {
+							uni.navigateTo({
+								url:'../index/index'
+							})
+				            console.log('用户点击确定');
+				        } else if (res.cancel) {
+				            console.log('用户点击取消');
+				        }
+				    }
+				});
+
 				// uni.navigateTo({
 				// 	url:'../index/index'
 				// })
 			}
-			console.log('我的数据',options)
+			
+			
 			
 			let _this = this;
 			uni.request({
@@ -78,22 +104,61 @@
 					
 				},
 				success: (res) => {
+					if(res.data.data.username==null||res.data.data.username=='') {
+						uni.showModal({
+						    title: '此手机号无体检信息',
+						    content: '请确认手机号为体检预留的手机号',
+							showCancel:false,
+						    success: function (res) {
+						        if (res.confirm) {
+									uni.navigateTo({
+										url:'../index/index'
+									})
+						            console.log('用户点击确定');
+						        } else if (res.cancel) {
+						            console.log('用户点击取消');
+						        }
+						    }
+						});
+						return;
+					}else {
+						uni.showModal({
+						    title: '',
+						    content: '登录成功',
+							showCancel:false,
+						    success: function (res) {
+						        if (res.confirm) {
+									
+						            console.log('用户点击确定');
+						        } else if (res.cancel) {
+						            console.log('用户点击取消');
+						        }
+						    }
+						});
+					}
 					console.log(res.data.data)
 					_this._data.username=res.data.data.username;
 					_this._data.url= res.data.data.url;
 					_this._data.name= res.data.data.name;
 					_this._data.idCard= res.data.data.idCard;
 					_this._data.etime=res.data.data.etime;
-					console.log('我的手机号',_this.username)
+					_this._data.etype=res.data.data.etype;
+					console.log('我组别',_this._data.etype)
 					// console.log('我的url',_this.url)
+					// if(_this._data.name==null||_this._data.name=='') {
+						
+					// }
 				}
 			})
 			
 		},
+		 onReady() {},
 		methods: {
+			//顶部导航栏下的关闭按钮
 			box_if(){
 				this.flag = !this.flag;
 				},
+			//查看pdf的按钮
 			checkpdf(res) {
 				console.log('pdf按钮',this.url);
 				
@@ -114,42 +179,85 @@
 						 console.log('失败')
 						}
 				    })
+			},
+			checkdetail() {
+				uni.navigateTo({
+					url:'../detail/detail'
+				})
 			}
+			
 		}
 	}
 </script>
-
 <style>
+	page {
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+		background-color: #88c6bb;
+		background-image: url(../../static/ui.png);
+		background-size: cover;
+	}
+/* page {
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+		
+		background-size: cover;
+	} */
+
+	body {
+		 font-size: calc(100vw / 18.75);
+	}
+</style>
+<style >
 	.top-nav {
 		width: 100%;
 		height: 30px;
-		background-color: #575757;
+		background-color: #1b7262;
 		text-align: left;
-	}
-	.top-nav text {
-		color: #fff;
-		font-size: 12px;
-		z-index: 10rpx;
-		padding-left: 10px;
-	}
-	.top-nav image {
-		margin: 3px 0 0 10px;
-		width: 20px;
-		height: 20px;
 	}
 	
+	.top-nav text {
+		color: #fff;
+		font-size: 59%;
+		z-index: 10rpx;
+		padding-left: 10px;
+		padding-top: 10px;
+		display: block;
+		width: 70%;
+		float: left;
+	}
+	
+	.top-nav image {
+		margin: 5px 10px 0 10px;
+		width: 20px;
+		height: 20px;
+		float: right;
+	}
+	
+	
 	.form {
-		width: 90%;
-		margin: 0 auto;
-		padding: 20px 0 0 0;
+		width: 75%;
+		margin: 35% auto 20%;
+		padding: 20px;
 		overflow: hidden;
 		text-align: left;
-	}
-	.fomr text {
-
+		background-color: rgba(255,255,255,.96);
+		border-radius: 15px;
+		
+		
 	}
 	.text-t {
 		margin-top: 10px;
+		border-bottom: 1px solid #237351;
+		justify-content: space-between;
+	}
+	.text-t text {
+		font-size: 58%;
+	}
+	.text-t button {
+		background-color: #1B7262;
 	}
 	.form-title {
 		font-size: 20px;
@@ -157,12 +265,28 @@
 	
 	.button-b {
 		width: 100%;
-		margin-top: 50px;
+		margin-top: 10px;
 		overflow: hidden;
 		text-align: center;
 	}
 	.button-b button {
-		width: 48%;
+		width: 100%;
 		display: inline-block;
+		background-color: #1B7262;
 	}
+	.tj-txt {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.tj-txt text {
+		display: flex;
+		flex-wrap: wrap;
+		font-size: 60%;
+	}
+	.load-btn {
+		background-color: #237351;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 17px;
+	}
+	
 </style>
